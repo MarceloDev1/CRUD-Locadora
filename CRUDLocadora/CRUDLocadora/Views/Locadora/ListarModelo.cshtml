@@ -1,0 +1,63 @@
+﻿@model CRUDLocadora.Models.FiltroLocadoraModel
+@{
+    ViewData["Title"] = "Modelo";
+}
+<body>
+    <section class="content">
+        <section class="content-header">
+            <h4>Modelos</h4>
+        </section>
+        <div class="box">
+            <div class="box-body">
+                <form action="BuscarModelo" method="post">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                <label for="Modelo">Modelo</label>
+                                @Html.TextBoxFor(x => x.NomeModelo, new { @class = "form-control", placeholder = "Modelo" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                            <div class="form-group">
+                                <label for="Montadora">Montadora</label>
+                                @Html.DropDownListFor(x => x.IdMontadora, new SelectList(Model.ListaMontadora, "IdMontadora", "NomeMontadora"), "Informe a montadora", new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                            <label class="control-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-block btn-info btn-social"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                            <label class="control-label">&nbsp;</label>
+                            <a asp-action="CadastrarModelo" class="btn btn-block btn-info btn-social"><i class="fa fa-search"></i> Novo Modelo</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Montadora</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var modelo in Model.ListaModelo)
+                    {
+                        <tr>
+                            <td>@modelo.NomeModelo</td>
+                            <td>@modelo.NomeMontadora</td>
+                            <td>
+                                <a href="/Locadora/EditarModelo?idModelo=@modelo.IdModelo" class="btn btn-primary" target="_blank">Editar</a>
+                                <a asp-action="ExcluirModelo" asp-route-idModelo="@modelo.IdModelo" class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>

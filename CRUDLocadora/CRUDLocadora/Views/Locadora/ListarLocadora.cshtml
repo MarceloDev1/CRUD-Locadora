@@ -1,0 +1,68 @@
+﻿@model CRUDLocadora.Models.FiltroLocadoraModel
+@{
+    ViewData["Title"] = "Locadora";
+}
+<body>
+    <section class="content">
+        <section class="content-header">
+            <h4>Locadoras</h4>
+        </section>
+        <div class="box">
+            @Html.AntiForgeryToken()
+            <div class="box-body">
+                <form action="BuscarLocadora" method="post">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                <label for="Locadora">Locadora</label>
+                                @Html.TextBoxFor(x => x.NomeFantasia, new { @class = "form-control", placeholder = "Locadora" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                <label for="CNPJ">CNPJ</label>
+                                @Html.TextBoxFor(x => x.CNPJ, new { @class = "form-control", placeholder = "CNPJ" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                            <label class="control-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-block btn-info btn-social"><i class="fa fa-search"></i> Buscar</button>
+                        </div>
+                        <div class="col-sm-12 col-md-2">
+                            <label class="control-label">&nbsp;</label>
+                            <a asp-action="CadastrarLocadora" class="btn btn-block btn-info btn-social"><i class="fa fa-search"></i> Nova Locadora</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Locadora</th>
+                        <th>CNPJ</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var locadora in Model.ListaLocadora)
+                    {
+                        <tr>
+                            <td>@locadora.NomeFantasia</td>
+                            <td>@locadora.CNPJ</td>
+                            <td>@locadora.Telefone</td>
+                            <td>@locadora.Email</td>
+                            <td>
+                                <a href="/Locadora/EditarLocadora?idLocadora=@locadora.IdLocadora" class="btn btn-primary" target="_blank">Editar</a>
+                                <a asp-action="ExcluirLocadora" asp-route-idLocadora="@locadora.IdLocadora" class="btn btn-danger">Excluir</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>

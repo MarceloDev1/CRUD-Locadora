@@ -1,0 +1,66 @@
+﻿@model CRUDLocadora.Models.FiltroLocadoraModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+@*<body>
+    <section class="content">
+        <section class="content-header">
+            <h4>Locadoras</h4>
+        </section>
+        <div class="box">
+            @Html.AntiForgeryToken()
+            <div class="box-body filtros">
+                <div class="row">
+                    <div class="col-sm-12 col-md-2">
+                        <div class="form-group">
+                            <label for="DataCriacao">Data Criação</label>
+                            @Html.TextBoxFor(x => x.DataCriacao, new { @class = "form-control", placeholder = "Data Criação" })
+                        </div>
+                    </div>*@
+                    @*<div class="col-sm-12 col-md-2">
+                    <div class="form-group">
+                    <label for="IdModelo">Modelo</label>
+                    @Html.DropDownListFor(x => x.IdModelo, new SelectList(Model.ListaModelo, "IdModelo", "NomeModelo"), "Informe o modelo", new { @class = "form-control" })
+                    </div>
+                    </div>*@
+                    @*<div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <label for="Locadora">Locadora</label>
+                            @Html.TextBoxFor(x => x.NomeFantasia, new { @class = "form-control", placeholder = "Locadora" })
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <label class="control-label">&nbsp;</label>
+                        <button type="submit" class="btn btn-block btn-info btn-social" id="buscar"><i class="fa fa-search"></i> Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Locadora</th>
+                        <th>Modelo</th>
+                        <th>Data de Criação</th>
+                        <th>Placa</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Marcelo Veículos</td>
+                        <td>Uno</td>
+                        <td>20/04/2023</td>
+                        <td>55H55</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Editar</button>
+                            <button type="button" class="btn btn-danger">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+*@

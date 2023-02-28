@@ -1,0 +1,29 @@
+﻿@model CRUDLocadora.Models.ModeloModel
+@{
+    ViewData["Title"] = "CadastrarModelo";
+}
+
+<h4 class="alert alert-secondary">Cadastrar Modelo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CadastrarModelo" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomeModelo" class="control-label">Nome Modelo</label>
+                <input asp-for="NomeModelo" class="form-control" placeholder="Nome Modelo" />
+                <span asp-validation-for="NomeModelo" class="text-danger"></span>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label for="IdMontadora">Montadora</label>
+                    @Html.DropDownListFor(x => x.IdMontadora, new SelectList(Model.ListaMontadora, "IdMontadora", "NomeMontadora"), "Informe a montadora", new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-outline-success btn-sm" />&emsp;
+                <a asp-action="Index" class="btn btn-link btn-sm">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

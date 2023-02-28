@@ -1,0 +1,26 @@
+﻿@model CRUDLocadora.Models.MontadoraModel
+@{
+    ViewData["Title"] = "CadastrarMontadora";
+}
+
+<h4 class="alert alert-secondary">Cadastrar Montadora</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CadastrarMontadora" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NomeMontadora" class="control-label">Nome Montadora</label>
+                <input asp-for="NomeMontadora" class="form-control" placeholder="Nome Montadora" />
+                <span asp-validation-for="NomeMontadora" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-outline-success btn-sm" />&emsp;
+                <a asp-action="Index" class="btn btn-link btn-sm">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="mensagem">
+    @TempData["MensagemAlerta"]
+</div>
