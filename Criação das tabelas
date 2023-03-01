@@ -1,0 +1,133 @@
+CREATE DATABASE [Locadora]
+
+USE [Locadora]
+GO
+
+Table [dbo].[Locadora]
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Locadora](
+	[IdLocadora] [int] IDENTITY(1,1) NOT NULL,
+	[NomeFantasia] [varchar](100) NOT NULL,
+	[RazaoSocial] [varchar](50) NULL,
+	[CNPJ] [varchar](14) NOT NULL,
+	[Email] [varchar](50) NULL,
+	[Telefone] [varchar](20) NULL,
+	[Endereco] [varchar](500) NULL,
+	[CEP] [varchar](8) NULL,
+	[Cidade] [varchar](50) NULL,
+	[Estado] [varchar](2) NULL,
+	[Bairro] [varchar](30) NULL,
+ CONSTRAINT [PK_Locadora] PRIMARY KEY CLUSTERED 
+(
+	[IdLocadora] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [Locadora]
+GO
+
+/****** Object:  Table [dbo].[LogUtilizacao]    Script Date: 28/02/2023 21:15:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LogUtilizacao](
+	[IdLog] [int] IDENTITY(1,1) NOT NULL,
+	[IdVeiculo] [int] NOT NULL,
+	[IdLocadora] [int] NOT NULL,
+	[Data] [smalldatetime] NOT NULL,
+	[EmUtilizacao] [bit] NOT NULL,
+ CONSTRAINT [PK_LogUtilizacao] PRIMARY KEY CLUSTERED 
+(
+	[IdLog] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[LogUtilizacao] ADD  CONSTRAINT [DF_LogUtilizacao_Data]  DEFAULT (getdate()) FOR [Data]
+GO
+
+USE [Locadora]
+GO
+
+/****** Object:  Table [dbo].[Modelo]    Script Date: 28/02/2023 21:16:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Modelo](
+	[IdModelo] [int] IDENTITY(1,1) NOT NULL,
+	[IdMontadora] [int] NOT NULL,
+	[Modelo] [varchar](50) NULL,
+ CONSTRAINT [PK_Modelo_IdModelo] PRIMARY KEY CLUSTERED 
+(
+	[IdModelo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+USE [Locadora]
+GO
+
+/****** Object:  Table [dbo].[Montadora]    Script Date: 28/02/2023 21:16:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Montadora](
+	[IdMontadora] [int] IDENTITY(1,1) NOT NULL,
+	[Montadora] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdMontadora] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Montadora] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+USE [Locadora]
+GO
+
+/****** Object:  Table [dbo].[Veiculos]    Script Date: 28/02/2023 21:16:57 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Veiculos](
+	[IdVeiculo] [int] IDENTITY(1,1) NOT NULL,
+	[IdModelo] [int] NOT NULL,
+	[Cor] [varchar](50) NULL,
+	[Fabricante] [varchar](50) NULL,
+	[AnoModelo] [varchar](50) NULL,
+	[Placa] [varchar](50) NULL,
+	[Chassi] [varchar](50) NULL,
+	[AnoFabricacao] [varchar](50) NULL,
+	[DataCriacao] [date] NULL,
+	[IdLocadora] [int] NULL,
+ CONSTRAINT [PK_Veiculos_IdVeiculo] PRIMARY KEY CLUSTERED 
+(
+	[IdVeiculo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Veiculos] ADD  DEFAULT (getdate()) FOR [DataCriacao]
+GO
